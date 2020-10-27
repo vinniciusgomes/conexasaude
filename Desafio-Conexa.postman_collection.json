@@ -1,0 +1,148 @@
+{
+	"info": {
+		"_postman_id": "d66c2e5c-f2fb-43f5-9a0e-5b22460080ae",
+		"name": "Desafio-Conexa",
+		"description": "API do desafio de frontend da conexa",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\":\"igor.silva@conexasaude.com.br\",\n\t\"senha\":\"12345678\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://desafio.conexasaude.com.br/api/login",
+					"protocol": "http",
+					"host": [
+						"desafio",
+						"conexasaude",
+						"com",
+						"br"
+					],
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Consultas",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGVzdGUifQ.8rm5Ug8hNsQ_Q5nPyB0YLd9KmumdzFHT-O_mrBQMrTY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://desafio.conexasaude.com.br/api/consultas",
+					"protocol": "http",
+					"host": [
+						"desafio",
+						"conexasaude",
+						"com",
+						"br"
+					],
+					"path": [
+						"api",
+						"consultas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Detalhar consulta",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGVzdGUifQ.8rm5Ug8hNsQ_Q5nPyB0YLd9KmumdzFHT-O_mrBQMrTY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://desafio.conexasaude.com.br/api/consulta/16",
+					"protocol": "http",
+					"host": [
+						"desafio",
+						"conexasaude",
+						"com",
+						"br"
+					],
+					"path": [
+						"api",
+						"consulta",
+						"16"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Criar consulta",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiVGVzdGUifQ.8rm5Ug8hNsQ_Q5nPyB0YLd9KmumdzFHT-O_mrBQMrTY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"idMedico\":12,\n\t\"paciente\":\"Rafael Braga\",\n\t\"dataConsulta\":\"2020-07-14T01:02\",\n\t\"observacao\":\"Teste de inclusao de consulta\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://desafio.conexasaude.com.br/api/consulta",
+					"protocol": "http",
+					"host": [
+						"desafio",
+						"conexasaude",
+						"com",
+						"br"
+					],
+					"path": [
+						"api",
+						"consulta"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
