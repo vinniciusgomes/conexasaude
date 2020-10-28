@@ -1,9 +1,24 @@
+import {useNavigation} from '@react-navigation/native';
+import {format} from 'date-fns';
 import React, {useEffect, useState} from 'react';
 import {Text} from 'react-native';
+import {RectButton, TouchableOpacity} from 'react-native-gesture-handler';
+import {useAuth} from '../../hooks/auth';
 
 import api from '../../services/api';
 
-import {AppointmentsList, AppointmentsListTitle, Container} from './styles';
+import {
+  AppointmentItem,
+  AppointmentItemContainer,
+  AppointmentsList,
+  AppointmentsListTitle,
+  Container,
+  DoctorName,
+  PatientName,
+  AppointmentDate,
+  SignOutButton,
+  SignOutButtonText,
+} from './styles';
 
 export interface IDoctor {
   id: number;
@@ -21,6 +36,8 @@ export interface IAppointments {
 
 const Dashboard: React.FC = () => {
   const [appointments, setAppointments] = useState<IAppointments[]>([]);
+  const {signOut} = useAuth();
+  const {navigate} = useNavigation();
 
   useEffect(() => {
     const getAppointments = async () => {
@@ -43,10 +60,27 @@ const Dashboard: React.FC = () => {
         ListHeaderComponent={
           <AppointmentsListTitle>Consultas</AppointmentsListTitle>
         }
+        keyExtractor={(item) => item.id}
         renderItem={({item: appointment}) => (
-          <Text>Pacientes: {appointment.paciente}</Text>
+          <AppointmentItem
+            onPress={() =>
+              navigate('AppointmentDetails', {appointmentId: appointment.id})}
+          >
+            <AppointmentItemContainer>
+              <PatientName>{appointment.paciente}</PatientName>
+              <AppointmentDate>
+                {format(new Date(appointment.dataConsulta), 'HH:mm - dd/MM/yy')}
+              </AppointmentDate>
+            </AppointmentItemContainer>
+            <DoctorName>{appointment.medico.nome}</DoctorName>
+          </AppointmentItem>
         )}
       />
+      <SignOutButton>
+        <TouchableOpacity onPress={() => signOut()}>
+          <SignOutButtonText>Sair</SignOutButtonText>
+        </TouchableOpacity>
+      </SignOutButton>
     </Container>
   );
 };

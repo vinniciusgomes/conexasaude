@@ -9,11 +9,13 @@ export const Container = styled.View`
   justify-content: center;
   padding: 0 30px ${Platform.OS === 'android' ? 150 : 40}px;
   align-items: center;
+
+  background: #fff;
 `;
 
 export const Title = styled.Text`
   font-size: 24px;
-  color: #fff;
+  color: #000;
   margin: 64px 0 24px;
 `;
 
